@@ -1,32 +1,145 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage{graphicx}
-\usepackage{graphicx}
-\usepackage{ctex}
+% 支持中文的 ctex 宏包
+\RequirePackage{ctex}
+% 页面布局
+\RequirePackage{geometry}
+% 数学宏包
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{bm}
+% 设置字体
+\RequirePackage{fontspec}
+% 设置颜色
+\RequirePackage{xcolor}
+% 插入图片
+\RequirePackage{graphicx}
+% 表格
+\RequirePackage{array}
+%% 长表格
+\RequirePackage{longtable}
+% 首行缩进
+\RequirePackage{indentfirst}
+% 每行缩进两个汉字
+\setlength\parindent{2em}
+
+\makeatletter 
+\makeatother
+
+\usepackage{float}
+\usepackage[toc,page]{appendix}
+\usepackage{listings}
+
+\lstnewenvironment{tcode}
+  {
+    \lstset{basicstyle = \small\ttfamily,
+        language=TeX,
+        tabsize = 4,
+        frame = single,
+        escapechar = `,
+        breaklines = true,
+        breakatwhitespace = true,
+        frameround = tttt,
+    }
+  }
+  {}
+
+
+%代码格式
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+	%	language=Python,                % the language of the code
+	breaklines,%自动折行
+	%extendedchars=false%解决代码跨页时，章节标题，页眉等汉字不显示的问题
+	keepspaces=false,  
+	%tabsize=4 %设置tab空格数
+	showspaces=false,  %不显示空格
+	showtabs=false,  
+	showstringspaces=true, 
+	numbers=left, 
+	basicstyle=\footnotesize, 
+	numberstyle=\tiny, 
+	numbersep=5pt, 
+	keywordstyle= \color{ blue!70},%关键字颜色
+	commentstyle= \color{red!50!green!50!blue!50},%注释颜色 
+	frame=shadowbox, % 边框格式：阴影效果
+	rulesepcolor= \color{ red!20!green!20!blue!20} ,
+	escapeinside=``, % 英文分号中可写入中文
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,%设置页边距
+	framexleftmargin=2em
+}
+
+
+\makeatletter %使\section中的内容左对齐
+\renewcommand\thesection{\chinese{section}、\kern-1em}
+\renewcommand\thesubsection{\arabic{section}\thinspace.\thinspace\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection\thinspace.\thinspace\arabic{subsubsection}}
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+ 	{-3.5ex \@plus -1ex \@minus -.2ex}%
+	{2.3ex \@plus.2ex}%
+	{\bf\large\leftline}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\large\bfseries\leftline}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\normalsize\bfseries\leftline}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+	{3.25ex \@plus1ex \@minus.2ex}%
+	{-1em}%
+	{\normalfont\normalsize\bfseries\leftline}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+	 {3.25ex \@plus1ex \@minus .2ex}%
+	 {-1em}%
+	 {\normalfont\normalsize\bfseries}}
+
+\makeatother
+
+\setlength{\topmargin}{5pt}
+\setlength{\headheight}{5pt}
+\setlength{\headsep}{5pt}
+\setlength{\footskip}{30pt}
+\setlength{\voffset}{-5pt}
+\setlength{\hoffset}{16pt}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\marginparpush}{0pt}
+\setlength{\marginparwidth}{0pt}
+\addtolength{\textheight}{4\baselineskip}
+
+\sloppy % 解决中英文混排文字超出边界问题
+
+\pagenumbering{arabic}
 
 \makeatletter
 \newcommand\dlmu[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
-\makeatother
+\makeatother%用于绘制下划线
 \usepackage{CJK}
+
 \begin{document}
 %%封面
-\begin{titlepage}
-	\centering
+\begin{center}
 	\includegraphics[width=98.40mm]{figures/zjut.png}\par
+\end{center}
 	\vspace{2cm}
 \begin{center}
-{\heiti \fontsize{14pt}{\baselineskip}\selectfont \textbf{{计算机网络课程设计报告}}}
+{\heiti \fontsize{14pt}{\baselineskip}\selectfont {计算机网络课程设计报告}}
 \end{center}
 \vspace{2cm}
+\begin{center}
 	\includegraphics[width=0.4\textwidth]{figures/zjutlogo.png}\par
 
-\vspace*{2cm}
-
-\begin{center}
+\vspace{1cm}
     \setlength{\arrayrulewidth}{0.5pt}
    {\songti \fontsize{14pt}{\baselineskip}\selectfont
 \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{lc}
-            学\quad 号\qquad &  \dlmu[5cm]{}  \\ 
+&\\
+            学\quad 号\qquad & \dlmu[5cm]{}  \\ 
             姓\quad 名\qquad & \dlmu[5cm]{}  \\ 
             班\quad 级\qquad & \dlmu[5cm]{}  \\
             提交日期\qquad &\dlmu[5cm]{2021年2月17日}  \\ 
@@ -34,11 +147,53 @@
     }
 \end{center}
 	\vfill
-
-\end{titlepage}
-
-\tableofcontents
 \newpage
 
+\tableofcontents
+
+\newpage
+
+\section{课程的目的和任务}
+Hello \LaTeX
+\begin{itemize}
+\item 
+\item
+\end{itemize}
+\begin{equation}
+a+b=c
+\end{equation}
+\begin{figure}[H]
+\centering
+\includegraphics[width=5in]{figures/zjut.png}
+\caption{zjut}
+\end{figure}
+
+\begin{table}[H]
+  \caption[标签名]{test}
+\centering
+  \begin{tabular}{cccc}
+\hline
+    表头第1个格 & 表头第2个格 & ... & 表头第n个格 \\
+\hline
+    表中数据(1,1) & 表中数据(1,2) & ... & 表中数据(1,n)\\
+    表中数据(2,1) & 表中数据(2,2) & ... & 表中数据(2,n)\\
+    表中数据(m,1) & 表中数据(m,2) & ... & 表中数据(m,n)\\
+\hline
+  \end{tabular}
+\end{table}
+\section{课程的基本内容和要求}
+\subsection{常用网络命令}
+\section{交换机与路由器}
+\subsection{网络编程}
+\section{实验总结与心得体会}
+\newpage
+%附录
+ \begin{appendices}
+\section{Test}
+\begin{lstlisting}[language=python]
+for i in range(10):
+    print(i)
+\end{lstlisting}
+\end{appendices}
 
 \end{document}
