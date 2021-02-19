@@ -1,0 +1,118 @@
+% 支持中文的 ctex 宏包
+\RequirePackage{ctex}
+% 页面布局
+\RequirePackage{geometry}
+% 数学宏包
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{bm}
+% 设置字体
+\RequirePackage{fontspec}
+% 设置颜色
+\RequirePackage{xcolor}
+% 插入图片
+\RequirePackage{graphicx}
+% 表格
+\RequirePackage{array}
+%% 长表格
+\RequirePackage{longtable}
+% 首行缩进
+\RequirePackage{indentfirst}
+% 图片浮动
+\RequirePackage{float}
+
+
+
+% 每行缩进两个汉字
+\setlength\parindent{2em}
+% 解决中英文混排文字超出边界问题
+\sloppy
+%设置页码
+\pagenumbering{arabic}
+
+
+
+%用于绘制下划线
+\makeatletter
+\newcommand\dlmu[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+\makeatother
+
+
+
+%使\section中的内容左对齐
+\makeatletter
+\renewcommand\thesection{\chinese{section}、\kern-1em}
+\renewcommand\thesubsection{\arabic{section}\thinspace.\thinspace\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection\thinspace.\thinspace\arabic{subsubsection}}
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+ 	{-3.5ex \@plus -1ex \@minus -.2ex}%
+	{2.3ex \@plus.2ex}%
+	{\bf\large\leftline}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\large\bfseries\leftline}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\normalsize\bfseries\leftline}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+	{3.25ex \@plus1ex \@minus.2ex}%
+	{-1em}%
+	{\normalfont\normalsize\bfseries\leftline}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+	 {3.25ex \@plus1ex \@minus .2ex}%
+	 {-1em}%
+	 {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+
+%页面设置
+\setlength{\topmargin}{5pt}
+\setlength{\headheight}{5pt}
+\setlength{\headsep}{5pt}
+\setlength{\footskip}{30pt}
+\setlength{\voffset}{-5pt}
+\setlength{\hoffset}{16pt}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\marginparpush}{0pt}
+\setlength{\marginparwidth}{0pt}
+\addtolength{\textheight}{4\baselineskip}
+
+
+
+%代码格式
+\usepackage[toc,page]{appendix}
+\usepackage{listings}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+	%	language=Python,                % the language of the code
+	breaklines,%自动折行
+	%extendedchars=false%解决代码跨页时，章节标题，页眉等汉字不显示的问题
+	keepspaces=false,  
+	%tabsize=4 %设置tab空格数
+	showspaces=false,  %不显示空格
+	showtabs=false,  
+	showstringspaces=true, 
+	numbers=left, 
+	basicstyle=\footnotesize, 
+	numberstyle=\tiny, 
+	numbersep=5pt, 
+	keywordstyle= \color{ blue!70},%关键字颜色
+	commentstyle= \color{red!50!green!50!blue!50},%注释颜色 
+	frame=shadowbox, % 边框格式：阴影效果
+	rulesepcolor= \color{ red!20!green!20!blue!20} ,
+	escapeinside=``, % 英文分号中可写入中文
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,%设置页边距
+	framexleftmargin=2em
+}
+
+
+
+
+
